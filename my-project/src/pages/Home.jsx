@@ -18,7 +18,6 @@ function Home() {
         <h1 style={{ color: '#333' }}>Welcome to the Home Page!</h1>
         {token ? (
           <div>
-            <p style={{ fontSize: '18px', color: '#555' }}>User is logged in with token: {token}</p>
             <button onClick={handleLogout} style={{ padding: '15px 30px', backgroundColor: '#ff6347', color: '#fff', border: 'none', borderRadius: '5px', fontSize: '16px', cursor: 'pointer' }}>
               Logout
             </button>

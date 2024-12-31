@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignupRight() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +21,10 @@ export default function SignupRight() {
   const mutation = useMutation({
     mutationFn: data => axios.post('http://localhost:5001/register', data),
     onSuccess: () => {
-      navigate('/login');
+      toast.success("Signup successful!");
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
     },
     onError: (error) => {
       if (error.response) {
@@ -157,6 +162,7 @@ export default function SignupRight() {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }

@@ -8,6 +8,8 @@ import { useMutation } from 'react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginRight() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +21,10 @@ export default function LoginRight() {
     return axios.post('http://localhost:5001/login', data)
       .then(response => {
         localStorage.setItem('authtoken', response.data.token);
-        navigate('/'); 
+        toast.success("Login successful!");
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       })
       .catch(error => {
         if (error.response && error.response.status === 401) {
@@ -112,7 +117,7 @@ export default function LoginRight() {
         </div>
       </form>
 
-      
+      <ToastContainer />
     </div>
   );
 }
